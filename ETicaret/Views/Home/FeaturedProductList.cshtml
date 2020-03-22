@@ -1,0 +1,19 @@
+﻿@using ETicaret.Entity
+@model IEnumerable<Product>
+
+<h4>Popüler Ürünler</h4>
+@foreach (var item in Model)
+{
+
+    <div class="thumbnail" style="width:270px; height:250px;">
+        <img src="~/Content/Image/@item.Image" style="width:125px; height:90px;" alt="Bootshop panasonoc New camera" />
+        <div class="caption">
+            <h5><a href="/Home/ProductDetails/@item.Id">@item.Name</a></h5>
+            <h5>@item.Description</h5>
+            <h4 style="text-align:center">
+                <a class="btn" href="/Home/ProductDetails/@item.Id">Görüntüle </a> <a class="btn btn-primary">@item.Price (₺)</a>
+            </h4>
+        </div>
+    </div>
+
+}

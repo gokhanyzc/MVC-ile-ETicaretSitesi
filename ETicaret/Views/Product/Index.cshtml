@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ETicaret.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <a class="btn btn-success btn-block" href="@Url.Action("Create")">Yeni Kayıt</a>
+                    <br />
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Resim</th>
+                                    <th>Adı</th>
+                                    <th>Onaylı</th>
+                                    <th>Anasayfa</th>
+                                    <th>Popüler</th>
+                                    <th>Kategori Adı</th>
+                                    <th></th>
+                                    <th></th>
+
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="~/Content/Image/@item.Image" width="75" height="50" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @if (item.IsApproved)
+                                            {
+                                                <label class="btn btn-success"><i class="m-r-10 mdi mdi-checkbox-marked-circle"></i>Evet</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="btn btn-danger"><i class="fas fa-calendar-times"></i> Hayır</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.IsHome)
+                                            {
+                                                <label class="btn btn-success"><i class="m-r-10 mdi mdi-checkbox-marked-circle"></i>Evet</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="btn btn-danger"><i class="fas fa-calendar-times"></i> Hayır</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.IsFeatured)
+                                            {
+                                                <label class="btn btn-success"><i class="m-r-10 mdi mdi-checkbox-marked-circle"></i>Evet</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="btn btn-danger"><i class="fas fa-calendar-times"></i> Hayır</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Category.Name)
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="@Url.Action("Edit",new { id=item.Id})"><i class="m-r-10 mdi mdi-update"></i>Düzenle</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete",new { id=item.Id })"><i class="m-r-10 mdi mdi-delete"></i>Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Resim</th>
+                                    <th>Adı</th>
+                                    <th>Onaylı</th>
+                                    <th>Anasayfa</th>
+                                    <th>Popüler</th>
+                                    <th>Kategori Adı</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
